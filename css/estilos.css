@@ -1,0 +1,145 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+*{
+    box-sizing: border-box;
+}
+.status{
+    background: #DCDCDC;
+}
+.publica{
+    background: #FFFFFF;
+}
+.privada{
+    background: #FFDEDE;
+}
+
+
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 22px 0px 22px;
+    z-index: 1;
+}
+header img{
+    width: 75px;
+    height: 53px;
+}
+.iconeMenu{
+    font-size: 45px;
+}
+
+main{
+    background-color: #d31a1a;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    padding-top: 26px;
+    overflow-y: scroll;
+    padding: 80px 0px 80px 0px;
+}
+.quadroBranco{
+    overflow-y: auto;
+    background-color: #F3F3F3; 
+}
+.mensagem{
+    width: 100%;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+    border-radius: 2px;
+    padding-left: 8px;
+}
+.mensagem p{
+    font-size: 14px;
+    line-height: 16px;
+}
+.mensagem strong{
+    font-weight: 700;
+}
+.mensagem small{
+    color: #AAAAAA;
+    margin-right: 4px
+}
+
+
+aside{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-end;
+    top: 0;
+    left: 0;
+}
+.barraLateral{
+    width: 259px;
+    height:100%;
+    background: #FFFFFF;
+}
+.caixaContatos,.caixaVisibilidade{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    flex-direction: column;
+    background-color: aqua;
+}
+.caixaContatos h1, .caixaVisibilidade h1{
+    margin: 26px 0px 26px 0px;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight:700;
+}
+.contatos, .visibilidade{
+    background-color: tomato;
+    width: 100%;
+}
+
+footer{
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    left: 0px;
+    bottom: 0px;
+    background: #FFFFFF;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+}
+footer ion-icon{
+    font-size: 26px;
+    margin-right: 27px;
+}
+footer textarea{
+    border: none;
+    margin-left: 17px;
+    width: 100%;
+    height: 28px;
+    min-height: 28px;
+    max-height: 28px;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+}
+
+.escondido{
+    display: none;
+}

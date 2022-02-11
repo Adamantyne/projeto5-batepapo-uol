@@ -1,0 +1,24 @@
+
+
+.animacaAparecer{
+    animation:aparecer 0.1s linear;
+}
+@keyframes aparecer {
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+
+.animacaDeslocar{
+    animation:deslocar 0.2s linear;
+}
+@keyframes deslocar {
+    from{
+        transform: translateX(259px);
+    }
+    to{
+        transform: translateX(0px);
+    }
+}
+.iconeMenu:hover{
+    color: red;
+}
