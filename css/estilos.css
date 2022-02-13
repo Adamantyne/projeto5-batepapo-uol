@@ -14,8 +14,43 @@ body{
 .privada{
     background: #FFDEDE;
 }
+.telaDeEntrada{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.telaDeEntrada img{
+    width: 130px;
+    height: 92px;
+    margin-top: 72px;
+}
 
+.inputEntrar{
+    margin-top: 94px;
+    width: 261px;
+    height: 54px;
+    background-color: #FFFFFF;
+    border: 1px solid #D7D7D7;
+    border-radius: 4px;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center
+}
 
+.botaoEntrar{
+    margin-top: 15px;
+    width: 109px;
+    height: 45px;
+    background-color: #E7E7E7;
+    border-radius: 9px;
+    border: none;
+    color: #696969;
+    font-size: 18px;
+    line-height: 25px;
+}
 
 header{
     position: fixed;
@@ -37,10 +72,10 @@ header img{
 }
 .iconeMenu{
     font-size: 45px;
+    transition: all 0.2s linear;
 }
 
 main{
-    background-color: #d31a1a;
     width: 100%;
     height: 100%;
     z-index: 0;
@@ -77,7 +112,6 @@ main{
 aside{
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
     position: fixed;
     z-index: 2;
     display: flex;
@@ -85,10 +119,21 @@ aside{
     top: 0;
     left: 0;
 }
+.fundoPreto{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+}
 .barraLateral{
     width: 259px;
     height:100%;
     background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
 }
 .caixaContatos,.caixaVisibilidade{
     display: flex;
@@ -96,7 +141,6 @@ aside{
     text-align: center;
     width: 100%;
     flex-direction: column;
-    background-color: aqua;
 }
 .caixaContatos h1, .caixaVisibilidade h1{
     margin: 26px 0px 26px 0px;
@@ -104,11 +148,55 @@ aside{
     line-height: 19px;
     font-weight:700;
 }
-.contatos, .visibilidade{
-    background-color: tomato;
+.contatos, .visibilidades{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
-
+.contato, .visibilidade{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 36px;
+    position: relative;
+}
+.contato ion-icon, .visibilidade ion-icon{
+    font-size: 25px;
+    margin:0px 7px 0px 17px;
+}
+.contato p,.visibilidade p{
+    font-size: 16px;
+    line-height: 19px;
+}
+.barraLateral button{
+    width: 100%;
+    height: 25px;
+    margin-top: 20px;
+    background-color: #E7E7E7;
+    border-radius: 9px;
+    border: none;
+    color: #000000;
+    font-size: 14px;
+    line-height: 25px;
+    transition: all 0.2s linear;
+}
+.iconeSelecionar{
+    color: #28BB25;
+    font-size: 9px;
+    display: none;
+    position: absolute;
+    right: 10px;
+}
+.selecionado{
+    background-color: #E7E7E7;
+    border-radius: 5px;
+}
+.selecionado .iconeSelecionar{
+    display: inline;
+}
 footer{
     position: fixed;
     width: 100%;

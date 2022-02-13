@@ -10,14 +10,19 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/query.css">
-    <link rel="stylesheet" href="css/hover.css">
+    <link rel="stylesheet" href="css/animacoes.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
 <body>
-    <div class="estrutura">
+    <div class="telaDeEntrada">
+        <img src="imagens/uol.png" alt="logo batepapo uol">
+        <input placeholder="Digite seu nome" class="inputEntrar" type="text">
+        <button onclick="entrarNoSite(this)" class="botaoEntrar">Entrar</button>
+    </div>
+    <div class="estrutura escondido">
         <header>
                 <img src="imagens/uol.png" alt="Logo bate papo uol">
                 <div class="iconeMenu">
@@ -31,20 +36,32 @@
             </div>
         </main>
 
-        <aside class="escondido animacaAparecer">
-            <div class="barraLateral animacaDeslocar">
+        <aside class="escondido">
+            <div class="fundoPreto animacaoAparecer" onclick="minimizarBarraLateral()">
+            </div>
+            <div class="barraLateral">
                 <div class="caixaContatos">
                     <h1>Escolha um contato<br>para enviar mensagem:</h1>
                     <div class="contatos">
-                        <p>afafafa</p>
+                
                     </div>
                 </div>
                 <div class="caixaVisibilidade">
                     <h1>Escolha a visibilidade:</h1>
-                    <div class="visibilidade">
-                        <p>afafafa</p>
+                    <div class="visibilidades">
+                        <div class="visibilidade selecionado" onclick="selecionarVisibilidade(this)">
+                            <p><ion-icon name="lock-closed"></ion-icon></p>
+                            <p>Público</p>
+                            <ion-icon name="checkmark" class="iconeSelecionar"></ion-icon>
+                        </div>
+                        <div class="visibilidade" onclick="selecionarVisibilidade(this)">
+                            <p><ion-icon name="lock-open"></ion-icon></p>
+                            <p>Reservadamente</p>
+                            <ion-icon name="checkmark" class="iconeSelecionar"></ion-icon>
+                        </div>
                     </div>
                 </div>
+                <button onclick="minimizarBarraLateral()">Ok</button>
             </div>
         </aside>
 
