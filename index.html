@@ -18,11 +18,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
 <body>
-    <div class="telaDeEntrada">
+    <section class="telaDeEntrada">
         <img src="imagens/uol.png" alt="logo batepapo uol">
         <input data-identifier="enter-name" placeholder="Digite seu nome" class="inputEntrar" type="text">
         <button data-identifier="start" onclick="entrarNoSite(this)" class="botaoEntrar">Entrar</button>
-    </div>
+    </section>
     <div class="estrutura escondido">
         <header>
                 <img src="imagens/uol.png" alt="Logo bate papo uol">
@@ -35,38 +35,38 @@
             <div class="telaDeCarregamento">
                 <img src="imagens/loading-buffering.gif" alt="tela de carregamento">
             </div>
-            <div class="quadroBranco">
+            <section class="quadroBranco">
             
-            </div>
+            </section>
         </main>
 
         <aside class="escondido">
             <div class="fundoPreto animacaoAparecer" onclick="minimizarBarraLateral()">
             </div>
-            <div class="barraLateral">
+            <nav class="barraLateral">
                 <div class="caixaContatos">
                     <h1>Escolha um contato<br>para enviar mensagem:</h1>
-                    <div class="contatos">
+                    <section class="contatos">
                 
-                    </div>
+                    </section>
                 </div>
                 <div class="caixaVisibilidade">
                     <h1>Escolha a visibilidade:</h1>
-                    <div class="visibilidades">
-                        <div data-identifier="visibility" class="visibilidade selecionado" onclick="selecionarVisibilidade(this,'message')">
+                    <section class="visibilidades">
+                        <article data-identifier="visibility" class="visibilidade selecionado" onclick="selecionarVisibilidade(this,'message')">
                             <p><ion-icon name="lock-closed"></ion-icon></p>
                             <p>Público</p>
                             <ion-icon name="checkmark" class="iconeSelecionar"></ion-icon>
-                        </div>
-                        <div data-identifier="visibility" class="visibilidade" onclick="selecionarVisibilidade(this,'private_message')">
+                        </article>
+                        <article data-identifier="visibility" class="visibilidade" onclick="selecionarVisibilidade(this,'private_message')">
                             <p><ion-icon name="lock-open"></ion-icon></p>
                             <p>Reservadamente</p>
                             <ion-icon name="checkmark" class="iconeSelecionar"></ion-icon>
-                        </div>
-                    </div>
+                        </article>
+                    </section>
                 </div>
                 <button onclick="minimizarBarraLateral()">Ok</button>
-            </div>
+            </nav>
         </aside>
 
         <footer>
