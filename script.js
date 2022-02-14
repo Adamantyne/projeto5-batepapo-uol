@@ -149,7 +149,7 @@ function renderizarMensagens(mensagens){
         `;
         }
         
-        if(ultimaMensagem !==mensagem || nomeUsuario ===mensagens[i].from){
+        if(ultimaMensagem !==mensagem){
             ultimaMensagem=mensagem;
             quadroBranco.innerHTML+=mensagem;
             mainFocada.scrollIntoView(false);
