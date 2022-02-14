@@ -1,4 +1,4 @@
-let contadorMensagens = 0, ultimaMensagem,nomeUsuario,objetoNome, participante="", visibilidade="message", destinatario = "todos";
+let contadorMensagens = 0, nomeUsuario,objetoNome, participante="",ultimaMensagem="", visibilidade="message", destinatario = "Todos", textoMensagem="",objetoMensagem=[];
 const mainFocada = document.querySelector("main");
 
 
@@ -19,7 +19,7 @@ function entrarNoSite(botao){
         buscarParticipantes();
         setInterval(buscarParticipantes(), 10000);
         definindoMensagemStatus();
-        setTimeout(tirarTelaCarregamento,1000);
+        setTimeout(tirarTelaCarregamento,2000);
     }
 }
 //Tirando tela de carregamento
@@ -62,17 +62,18 @@ function reenviarRequisicao(){
     requisicao.catch(erroRequisicao);
 }
 function requisicaoReenvio(resultado){
-    console.log(resultado);
+    //console.log(resultado);
 }
+
 
 //Construindo e enviando a mensagem para o servidor 
 function enviandoMensagem(){
-    const textoMensagem = document.querySelector(".escrevaAqui").value;
-    const objetoMensagem ={
-        from: nomeUsuario,
+    textoMensagem = document.querySelector(".escrevaAqui").value;
+    objetoMensagem ={
+        from:nomeUsuario,
         to:destinatario,
         text:textoMensagem,
-        type: visibilidade
+        type:visibilidade
     }
     if(textoMensagem!==""){
         const requisicao =axios.post(
@@ -82,8 +83,13 @@ function enviandoMensagem(){
         requisicao.catch(erroRequisicao);
         limparCampo();
     }
+    else {
+        alert("mensagem invalida");
+    }
 }
+
 function requisicaoMensagem(resultado){
+    console.log(objetoMensagem);
     console.log(resultado);
 }
 function limparCampo(){
@@ -93,6 +99,7 @@ function limparCampo(){
 
 //Conferindo erros no envio das requisições
 function erroRequisicao(erro){
+    alert("erro na requisição, recarregue o site e tente novamente");
     console.log(erro.response);
     window.location.reload();
 }
@@ -113,16 +120,8 @@ function renderizarMensagens(mensagens){
     for(let i=contadorMensagens; i<mensagens.length; i++){
         let mensagem;
         //Privando e renderizando mensagens 
-        if(mensagens[i].type==="message"||(mensagens[i].type==="private_message" &&   (nomeUsuario===mensagens[i].from|| nomeUsuario===mensagens[i].to))){
-            mensagem = `
-        <article data-identifier="message" class="mensagem ${i} ${mensagens[i].type}">
-        <p>
-            <small>(${mensagens[i].time}) </small><strong> ${mensagens[i].from} </strong>para<strong> ${mensagens[i].to} </strong>: ${mensagens[i].text}
-        </p>
-        </article>
-        `;
-        }
-        else if(mensagens[i].type==="status"){
+        
+        if(mensagens[i].type==="status"){
             mensagem = `
         <article data-identifier="message" class="mensagem ${i} ${mensagens[i].type}">
         <p>
@@ -131,7 +130,7 @@ function renderizarMensagens(mensagens){
         </article>
         `;
         }
-        else {
+        else if(mensagens[i].type==="private_message" && nomeUsuario!==mensagens[i].from && nomeUsuario!==mensagens[i].to) {
             mensagem =`
         <article data-identifier="message" class="mensagem escondido ${i} ${mensagens[i].type}">
         <p>
@@ -139,14 +138,23 @@ function renderizarMensagens(mensagens){
         </p>
         </article>
         `;
-        
+        }
+        else{
+            mensagem = `
+        <article data-identifier="message" class="mensagem ${i} ${mensagens[i].type}">
+        <p>
+            <small>(${mensagens[i].time}) </small><strong> ${mensagens[i].from} </strong>para<strong> ${mensagens[i].to} </strong>: ${mensagens[i].text}
+        </p>
+        </article>
+        `;
         }
         
-        if(ultimaMensagem !==mensagem){
+        if(ultimaMensagem !==mensagem || nomeUsuario ===mensagens[i].from){
             ultimaMensagem=mensagem;
             quadroBranco.innerHTML+=mensagem;
             mainFocada.scrollIntoView(false);
         }
+        
         contadorMensagens = i;   
     }
 
@@ -190,7 +198,7 @@ function renderizarParticipantes(resultado){
         </article>
         `;
         contatos.innerHTML=`
-            <article data-identifier="participant" class="contato selecionado" onclick="selecionarContato(this, 'todos')">
+            <article data-identifier="participant" class="contato selecionado" onclick="selecionarContato(this, 'Todos')">
                     <ion-icon name="people"></ion-icon>
                     <p>Todos</p>
                     <ion-icon name="checkmark" class="iconeSelecionar"></ion-icon>
