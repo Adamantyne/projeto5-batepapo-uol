@@ -27,11 +27,14 @@
     color: #696969;
     cursor: pointer;
 }
-.barraLateral button:hover{
+.barraLateral button:hover, .botaoEntrar:hover{
     background-color: lightgreen;
     cursor: pointer;
 }
 .contato:hover, .visibilidade:hover{
     background-color:#f1f1f1 ;
+    cursor: pointer;
+}
+footer ion-icon:hover{
     cursor: pointer;
 }

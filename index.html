@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/query.css">
     <link rel="stylesheet" href="css/animacoes.css">
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,8 +20,8 @@
 <body>
     <div class="telaDeEntrada">
         <img src="imagens/uol.png" alt="logo batepapo uol">
-        <input placeholder="Digite seu nome" class="inputEntrar" type="text">
-        <button onclick="entrarNoSite(this)" class="botaoEntrar">Entrar</button>
+        <input data-identifier="enter-name" placeholder="Digite seu nome" class="inputEntrar" type="text">
+        <button data-identifier="start" onclick="entrarNoSite(this)" class="botaoEntrar">Entrar</button>
     </div>
     <div class="estrutura escondido">
         <header>
@@ -31,6 +32,9 @@
         </header>
 
         <main>
+            <div class="telaDeCarregamento">
+                <img src="imagens/loading-buffering.gif" alt="tela de carregamento">
+            </div>
             <div class="quadroBranco">
             
             </div>
@@ -49,12 +53,12 @@
                 <div class="caixaVisibilidade">
                     <h1>Escolha a visibilidade:</h1>
                     <div class="visibilidades">
-                        <div class="visibilidade selecionado" onclick="selecionarVisibilidade(this,'message')">
+                        <div data-identifier="visibility" class="visibilidade selecionado" onclick="selecionarVisibilidade(this,'message')">
                             <p><ion-icon name="lock-closed"></ion-icon></p>
                             <p>Público</p>
                             <ion-icon name="checkmark" class="iconeSelecionar"></ion-icon>
                         </div>
-                        <div class="visibilidade" onclick="selecionarVisibilidade(this,'private_message')">
+                        <div data-identifier="visibility" class="visibilidade" onclick="selecionarVisibilidade(this,'private_message')">
                             <p><ion-icon name="lock-open"></ion-icon></p>
                             <p>Reservadamente</p>
                             <ion-icon name="checkmark" class="iconeSelecionar"></ion-icon>
@@ -67,7 +71,7 @@
 
         <footer>
             <textarea class="escrevaAqui" placeholder="Escreva aqui..." type="text"></textarea>>
-            <ion-icon onclick="enviandoMensagem()" name="paper-plane-outline"></ion-icon>
+            <ion-icon data-identifier="send-message" onclick="enviandoMensagem()" name="paper-plane-outline"></ion-icon>
             <p class="statusMensagem"></p>
         </footer>
     </div>

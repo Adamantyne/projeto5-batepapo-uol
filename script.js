@@ -19,7 +19,13 @@ function entrarNoSite(botao){
         buscarParticipantes();
         setInterval(buscarParticipantes(), 10000);
         definindoMensagemStatus();
+        setTimeout(tirarTelaCarregamento,1000);
     }
+}
+//Tirando tela de carregamento
+function tirarTelaCarregamento(){
+    const telaCarregar = document.querySelector(".telaDeCarregamento");
+    telaCarregar.classList.add("escondido");
 }
 //Definindo a mensagem de status
 function definindoMensagemStatus(){
@@ -109,7 +115,7 @@ function renderizarMensagens(mensagens){
         //Privando e renderizando mensagens 
         if(mensagens[i].type==="message"||(mensagens[i].type==="private_message" &&   (nomeUsuario===mensagens[i].from|| nomeUsuario===mensagens[i].to))){
             mensagem = `
-        <section class="mensagem ${i} ${mensagens[i].type}">
+        <section data-identifier="message" class="mensagem ${i} ${mensagens[i].type}">
         <p>
             <small>(${mensagens[i].time}) </small><strong> ${mensagens[i].from} </strong>para<strong> ${mensagens[i].to} </strong>: ${mensagens[i].text}
         </p>
@@ -118,7 +124,7 @@ function renderizarMensagens(mensagens){
         }
         else if(mensagens[i].type==="status"){
             mensagem = `
-        <section class="mensagem ${i} ${mensagens[i].type}">
+        <section data-identifier="message" class="mensagem ${i} ${mensagens[i].type}">
         <p>
             <small>(${mensagens[i].time}) </small><strong> ${mensagens[i].from} </strong>: ${mensagens[i].text}
         </p>
@@ -127,7 +133,7 @@ function renderizarMensagens(mensagens){
         }
         else {
             mensagem =`
-        <section class="mensagem escondido ${i} ${mensagens[i].type}">
+        <section data-identifier="message" class="mensagem escondido ${i} ${mensagens[i].type}">
         <p>
             <small>(${mensagens[i].time}) </small><strong> ${mensagens[i].from} </strong>para<strong> ${mensagens[i].to} </strong>: ${mensagens[i].text}
         </p>
@@ -177,14 +183,14 @@ function renderizarParticipantes(resultado){
     
     for(let i=0; i<nomeParticipantes.length; i++){
         participante += `
-        <div class="contato" onclick="selecionarContato(this, '${nomeParticipantes[i].name}')">
+        <div data-identifier="participant" class="contato" onclick="selecionarContato(this, '${nomeParticipantes[i].name}')">
                <div><ion-icon name="person-circle"></ion-icon></div>
                <p>${nomeParticipantes[i].name}</p>
                <ion-icon name="checkmark" class="iconeSelecionar"></ion-icon>
         </div>
         `;
         contatos.innerHTML=`
-            <div class="contato selecionado" onclick="selecionarContato(this, 'todos')">
+            <div data-identifier="participant" class="contato selecionado" onclick="selecionarContato(this, 'todos')">
                     <ion-icon name="people"></ion-icon>
                     <p>Todos</p>
                     <ion-icon name="checkmark" class="iconeSelecionar"></ion-icon>
