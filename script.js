@@ -1,4 +1,4 @@
-let contadorMensagens = 0, ultimaMensagem,nomeUsuario,objetoNome, participante="";
+let contadorMensagens = 0, ultimaMensagem,nomeUsuario,objetoNome, participante="", visibilidade="message", destinatario = "todos";
 const mainFocada = document.querySelector("main");
 
 
@@ -18,7 +18,20 @@ function entrarNoSite(botao){
         setInterval(verificandoMensagens, 3000);
         buscarParticipantes();
         setInterval(buscarParticipantes(), 10000);
+        definindoMensagemStatus();
     }
+}
+//Definindo a mensagem de status
+function definindoMensagemStatus(){
+    let valorVisibilidade;
+    if(visibilidade==="message"){
+        valorVisibilidade ="publico";
+    }
+    else{
+        valorVisibilidade ="privado";
+    }
+    const mensagemStatus= document.querySelector(".statusMensagem");
+    mensagemStatus.innerHTML=`Enviando para ${destinatario} (${valorVisibilidade})`;
 }
 
 //Enviando requisição de usuário
@@ -49,12 +62,11 @@ function requisicaoReenvio(resultado){
 //Construindo e enviando a mensagem para o servidor 
 function enviandoMensagem(){
     const textoMensagem = document.querySelector(".escrevaAqui").value;
-    const destinatario = "todos";
     const objetoMensagem ={
         from: nomeUsuario,
         to:destinatario,
         text:textoMensagem,
-        type: "message"
+        type: visibilidade
     }
     if(textoMensagem!==""){
         const requisicao =axios.post(
@@ -93,13 +105,37 @@ function prepararMensagens(resultado){
 function renderizarMensagens(mensagens){
     let quadroBranco = document.querySelector(".quadroBranco");
     for(let i=contadorMensagens; i<mensagens.length; i++){
-        const mensagem = `
+        let mensagem;
+        //Privando e renderizando mensagens 
+        if(mensagens[i].type==="message"||(mensagens[i].type==="private_message" &&   (nomeUsuario===mensagens[i].from|| nomeUsuario===mensagens[i].to))){
+            mensagem = `
         <section class="mensagem ${i} ${mensagens[i].type}">
         <p>
             <small>(${mensagens[i].time}) </small><strong> ${mensagens[i].from} </strong>para<strong> ${mensagens[i].to} </strong>: ${mensagens[i].text}
         </p>
         </section>
         `;
+        }
+        else if(mensagens[i].type==="status"){
+            mensagem = `
+        <section class="mensagem ${i} ${mensagens[i].type}">
+        <p>
+            <small>(${mensagens[i].time}) </small><strong> ${mensagens[i].from} </strong>: ${mensagens[i].text}
+        </p>
+        </section>
+        `;
+        }
+        else {
+            mensagem =`
+        <section class="mensagem escondido ${i} ${mensagens[i].type}">
+        <p>
+            <small>(${mensagens[i].time}) </small><strong> ${mensagens[i].from} </strong>para<strong> ${mensagens[i].to} </strong>: ${mensagens[i].text}
+        </p>
+        </section>
+        `;
+        
+        }
+        
         if(ultimaMensagem !==mensagem){
             ultimaMensagem=mensagem;
             quadroBranco.innerHTML+=mensagem;
@@ -141,14 +177,14 @@ function renderizarParticipantes(resultado){
     
     for(let i=0; i<nomeParticipantes.length; i++){
         participante += `
-        <div class="contato" onclick="selecionarContato(this)">
+        <div class="contato" onclick="selecionarContato(this, '${nomeParticipantes[i].name}')">
                <div><ion-icon name="person-circle"></ion-icon></div>
                <p>${nomeParticipantes[i].name}</p>
                <ion-icon name="checkmark" class="iconeSelecionar"></ion-icon>
         </div>
         `;
         contatos.innerHTML=`
-            <div class="contato selecionado" onclick="selecionarContato(this)">
+            <div class="contato selecionado" onclick="selecionarContato(this, 'todos')">
                     <ion-icon name="people"></ion-icon>
                     <p>Todos</p>
                     <ion-icon name="checkmark" class="iconeSelecionar"></ion-icon>
@@ -157,7 +193,9 @@ function renderizarParticipantes(resultado){
     }
 }
 //Selecionar contato
-function selecionarContato(contatoMarcar){
+function selecionarContato(contatoMarcar,destinatarioSelecionado){
+    destinatario = destinatarioSelecionado;
+    definindoMensagemStatus();
     let todosOsContatos = document.querySelector(".contatos");
     let contatoDesmarcar = todosOsContatos.querySelector(".selecionado");
     if(contatoDesmarcar!==null){
@@ -166,7 +204,9 @@ function selecionarContato(contatoMarcar){
     contatoMarcar.classList.add("selecionado");
 }
 //selecionar visibilidade
-function selecionarVisibilidade(marcarViibilidade){
+function selecionarVisibilidade(marcarViibilidade, visibilidadeEscolhida){
+    visibilidade = visibilidadeEscolhida;
+    definindoMensagemStatus();
     let todasAsVisibilidades=document.querySelector(".visibilidades");
     let desmarcarVisibilidade= todasAsVisibilidades.querySelector(".selecionado");
     if(desmarcarVisibilidade!==null){

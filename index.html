@@ -49,12 +49,12 @@
                 <div class="caixaVisibilidade">
                     <h1>Escolha a visibilidade:</h1>
                     <div class="visibilidades">
-                        <div class="visibilidade selecionado" onclick="selecionarVisibilidade(this)">
+                        <div class="visibilidade selecionado" onclick="selecionarVisibilidade(this,'message')">
                             <p><ion-icon name="lock-closed"></ion-icon></p>
                             <p>Público</p>
                             <ion-icon name="checkmark" class="iconeSelecionar"></ion-icon>
                         </div>
-                        <div class="visibilidade" onclick="selecionarVisibilidade(this)">
+                        <div class="visibilidade" onclick="selecionarVisibilidade(this,'private_message')">
                             <p><ion-icon name="lock-open"></ion-icon></p>
                             <p>Reservadamente</p>
                             <ion-icon name="checkmark" class="iconeSelecionar"></ion-icon>
@@ -68,6 +68,7 @@
         <footer>
             <textarea class="escrevaAqui" placeholder="Escreva aqui..." type="text"></textarea>>
             <ion-icon onclick="enviandoMensagem()" name="paper-plane-outline"></ion-icon>
+            <p class="statusMensagem"></p>
         </footer>
     </div>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>

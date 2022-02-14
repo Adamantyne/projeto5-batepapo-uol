@@ -8,10 +8,10 @@ body{
 .status{
     background: #DCDCDC;
 }
-.publica{
+.message{
     background: #FFFFFF;
 }
-.privada{
+.private_message{
     background: #FFDEDE;
 }
 .telaDeEntrada{
@@ -86,6 +86,9 @@ main{
 .quadroBranco{
     overflow-y: auto;
     background-color: #F3F3F3; 
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 .mensagem{
     width: 100%;
@@ -95,6 +98,7 @@ main{
     margin-bottom: 4px;
     border-radius: 2px;
     padding-left: 8px;
+    flex-wrap: wrap;
 }
 .mensagem p{
     font-size: 14px;
@@ -209,6 +213,7 @@ footer{
     align-items: center;
     justify-content: space-between;
     z-index: 1;
+    overflow: hidden;
 }
 footer ion-icon{
     font-size: 26px;
@@ -226,6 +231,14 @@ footer textarea{
     font-size: 18px;
     line-height: 21px;
     color: #000000;
+}
+.statusMensagem{
+    position: absolute;
+    bottom: 0;
+    left: 17px;
+    font-size: 14px;
+    line-height: 25px;
+    color: #b6b6b6;
 }
 
 .escondido{
